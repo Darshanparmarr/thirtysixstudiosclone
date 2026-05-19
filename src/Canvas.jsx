@@ -1,7 +1,18 @@
-import { useEffect, useMemo, useRef } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import canvasImages from "./canvasimages";
 import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
+
+const MOBILE_QUERY = "(max-width: 768px)";
+const DESKTOP_MULTIPLIER = 1.5;
+const MOBILE_MULTIPLIER = 0.55;
+
+function readMultiplier() {
+  if (typeof window === "undefined") return DESKTOP_MULTIPLIER;
+  return window.matchMedia(MOBILE_QUERY).matches
+    ? MOBILE_MULTIPLIER
+    : DESKTOP_MULTIPLIER;
+}
 
 const imageCache = new Map();
 
@@ -36,6 +47,14 @@ function Canvas({ details }) {
   const lastDrawnRef = useRef(-1);
   const tweenRef = useRef(null);
   const visibleRef = useRef(true);
+  const [multiplier, setMultiplier] = useState(readMultiplier);
+
+  useEffect(() => {
+    const mq = window.matchMedia(MOBILE_QUERY);
+    const handler = () => setMultiplier(readMultiplier());
+    mq.addEventListener("change", handler);
+    return () => mq.removeEventListener("change", handler);
+  }, []);
 
   const scrollSpeed = useMemo(
     () => (Math.random() * 0.9 + 0.1).toFixed(1),
@@ -126,8 +145,8 @@ function Canvas({ details }) {
       ref={canvasRef}
       className="absolute pointer-events-none will-change-transform"
       style={{
-        width: `${size * 1.5}px`,
-        height: `${size * 1.5}px`,
+        width: `${size * multiplier}px`,
+        height: `${size * multiplier}px`,
         top: `${top}%`,
         left: `${left}%`,
         zIndex,
