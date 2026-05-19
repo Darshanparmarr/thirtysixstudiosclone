@@ -6,23 +6,26 @@ import { useEffect } from "react";
 
 function App() {
   useEffect(() => {
+    const isTouch = window.matchMedia("(hover: none)").matches;
+    if (isTouch) return;
     const scroll = new LocomotiveScroll();
+    return () => scroll.destroy?.();
   }, []);
 
   return (
     <>
       <div className="w-full relative min-h-screen text-white font-helvetica">
         {data[0].map((canvasdets, index) => (
-          <Canvas details={canvasdets} />
+          <Canvas key={index} details={canvasdets} />
         ))}
         <div className="w-full relative z-[1] h-screen text-white">
-          <nav className="w-full p-4 flex justify-between z-50">
+          <nav className="w-full p-4 flex flex-wrap justify-between items-center gap-4 z-50">
             <div className="brand text-2xl font-regular">thirtysixstudios</div>
-            <div className="links flex gap-10">
+            <div className="links flex flex-wrap gap-6 md:gap-10">
               {["Home", "About", "Projects", "Contact"].map((link, index) => (
                 <a
                   key={index}
-                  href="{`#${link.toLowerCase()}`}"
+                  href={`#${link.toLowerCase()}`}
                   className="text-md hover:text-gray-300"
                 >
                   {link}
@@ -30,13 +33,13 @@ function App() {
               ))}
             </div>
           </nav>
-          <div className="textcontainer w-full px-[20%]">
-            <div className="text w-[50%]">
-              <h3 className="text-2xl leading-[1]">
+          <div className="textcontainer w-full px-6 md:px-[20%]">
+            <div className="text w-full md:w-[50%]">
+              <h3 className="text-xl md:text-2xl leading-[1]">
                 At Thirtysixstudio, we build and immersive digital experiences
                 for brands with a purpose.
               </h3>
-              <p className="text-sm w-[80%] mt-10 font-large">
+              <p className="text-sm w-full md:w-[80%] mt-10 font-large">
                 We're a boutique production studio focused on design, animation,
                 and technology, constantly rethinking what digital craft can do
                 for present-day ads and campaigns.
@@ -45,7 +48,7 @@ function App() {
             </div>
           </div>
           <div className="w-full absolute bottom-0 left-0">
-            <h1 className="text-[10rem] font-normal tracking-tight z-[-10] text-center">
+            <h1 className="text-[20vw] md:text-[10rem] font-normal tracking-tight z-[-10] text-center leading-none">
               Thirtysixstudios
             </h1>
           </div>

@@ -1,12 +1,26 @@
 @import "tailwindcss";
-@import url('https://use.typekit.net/your-font-kit-id.css');
 
-body{
+body {
     font-family: 'Helvetica Now Display', sans-serif;
     background-color: #fd2c2a;
     overflow-x: hidden;
-    /* background-color: #0e0e0e; */
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
 }
-canvas{
+
+canvas {
     pointer-events: none;
+    transform: translateZ(0);
+    backface-visibility: hidden;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+        animation-duration: 0.001ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.001ms !important;
+        scroll-behavior: auto !important;
+    }
 }
