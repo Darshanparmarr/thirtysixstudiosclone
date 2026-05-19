@@ -47,8 +47,8 @@ function App() {
               <p className="text-md mt-4">scroll</p>
             </div>
           </div>
-          <div className="w-full absolute bottom-0 left-0">
-            <h1 className="text-[20vw] md:text-[10rem] font-normal tracking-tight z-[-10] text-center leading-none">
+          <div className="w-full absolute bottom-0 left-0 overflow-hidden">
+            <h1 className="text-[11vw] md:text-[10rem] font-normal tracking-tight z-[-10] text-center leading-none whitespace-nowrap">
               Thirtysixstudios
             </h1>
           </div>
