@@ -14,11 +14,11 @@ function App() {
 
   return (
     <>
-      <div className="w-full relative min-h-screen text-white font-helvetica">
+      <div className="w-full relative md:min-h-screen text-white font-helvetica">
         {data[0].map((canvasdets, index) => (
           <Canvas key={index} details={canvasdets} />
         ))}
-        <div className="w-full relative z-[1] h-screen text-white">
+        <div className="w-full relative z-[1] md:h-screen text-white pb-8 md:pb-0">
           <nav className="w-full p-4 flex flex-wrap justify-between items-center gap-4 z-50">
             <div className="brand text-2xl font-regular">thirtysixstudios</div>
             <div className="links flex flex-wrap gap-6 md:gap-10">
@@ -47,7 +47,7 @@ function App() {
               <p className="text-md mt-4">scroll</p>
             </div>
           </div>
-          <div className="w-full absolute bottom-0 left-0 overflow-hidden">
+          <div className="w-full mt-12 md:mt-0 md:absolute md:bottom-0 md:left-0 overflow-hidden">
             <h1 className="text-[11vw] md:text-[10rem] font-normal tracking-tight z-[-10] text-center leading-none whitespace-nowrap">
               Thirtysixstudios
             </h1>

@@ -5,7 +5,7 @@ import gsap from "gsap";
 
 const MOBILE_QUERY = "(max-width: 768px)";
 const DESKTOP_MULTIPLIER = 1.5;
-const MOBILE_MULTIPLIER = 0.55;
+const MOBILE_MULTIPLIER = 0.4;
 
 function readMultiplier() {
   if (typeof window === "undefined") return DESKTOP_MULTIPLIER;
